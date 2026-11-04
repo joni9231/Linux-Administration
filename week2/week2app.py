@@ -7,10 +7,10 @@ load_dotenv(find_dotenv("db.env"))
 app = Flask(__name__)
 
 DB_config = {
-    "host": os.getenv("DB_HOST", "localhost"),
-    "user": os.getenv("DB_USER", "xxx"),
-    "password": os.getenv("DB_PASSWORD", "xxx"),
-    "database": os.getenv("DB_DATABASE_NAME", "xxx"),
+    "host": os.getenv("DB_HOST"),
+    "user": os.getenv("DB_USER"),
+    "password": os.getenv("DB_PASSWORD"),
+    "database": os.getenv("DB_DATABASE_NAME"),
 }
 
 SITE = """
@@ -41,7 +41,7 @@ SITE = """
 
 
 <pre>
-
+<a href="https://github.com/joni9231/Linux-Administration/tree/main/week2">github linkki</a>
 </pre>
 
 </body>
@@ -64,8 +64,3 @@ def viewCount():
 def index():
     maara = viewCount()
     return render_template_string(SITE, maara=maara)
-
-
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
