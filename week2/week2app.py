@@ -4,45 +4,56 @@ from flask import Flask, render_template_string
 from dotenv import load_dotenv, find_dotenv
 load_dotenv(find_dotenv("db.env"))
 
-app = Flask(__name__)
+app = Flask(name)
 
 DB_config = {
     "host": os.getenv("DB_HOST"),
     "user": os.getenv("DB_USER"),
     "password": os.getenv("DB_PASSWORD"),
-    "database": os.getenv("DB_DATABASE_NAME"),
+    "database": os.getenv("DB_DATABASENAME"),
 }
 
 SITE = """
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body {
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 0 20px;
-      font-family: "Comic Sans MS", "Comic Sans", cursive;
-      line-height: 1.6;
-      background: #f0f4f8;
-      color: #203040;
-    }
-    h1, h2 { color: #005a8d; }
-    pre { background: #fff; padding: 16px; overflow-x: auto; }
-  </style>
+<title>week 2</title>
 </head>
-<body>
-  <h1>Week 2 Assignment</h1>
-  <p>Welcome to my Week 2 project!!!!
-    here is visitor count: {{ maara }} !!!!!!!!</p>
+<body style="background: linear-gradient(pink, yellow, lightgreen, lightblue, violet); min-height: 100vh;">
 
+<center>
 
+<h1><font color="blue" face="Comic Sans MS">Week 2 Assignment</font></h1>
+
+<font face="Comic Sans MS">
+Welcome to my Week 2 project!!!!<br>
+here is visitor count: <b><font color="red">{{ maara }}</font></b> !!!! (≧▽≦)
+</font>
+
+<br><br>
+
+<hr>
 
 <pre>
-<a href="https://github.com/joni9231/Linux-Administration/tree/main/week2">github linkki</a>
+ /\/\
+( o.o )
+^ <
 </pre>
+
+<br><br><br>
+
+<img src="https://static.wikia.nocookie.net/silly-cat/images/1/19/Thumbs_Up.png/revision/latest?cb=20231201204731" width="300">
+
+
+<br>
+<hr>
+
+<p>
+<a href="https://github.com/joni9231/Linux-Administration/tree/main/week2"><font size="6">github</font></a>
+</p>
+
+<br>
+
+</center>
 
 </body>
 </html>
