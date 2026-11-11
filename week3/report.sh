@@ -1,6 +1,6 @@
+#!/bin/bash
 
 set -euo pipefail
-
 
 disk_status() {
   local usage="${1%\%}"
