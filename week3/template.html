@@ -65,7 +65,6 @@
     <header>
         <h1>Server Status Report</h1>
         <p>Week 3: Linux command line and Bash scripting</p>
-        <p>TODO: Add your own introduction.</p>
     </header>
 
     <section>
@@ -164,7 +163,15 @@
         </p>
         <p>
             TODO: Explain the disk space function and one example
-            of piping from your own script.
+            of piping from your own script.<br>
+            ANS:<br>
+            1.disk_status() reads the value from DISK_USAGE (df -P / | awk 'NR == 2 {print $5}')<br>
+            2.turns the % into a number,<br>
+            3.an if statement that echoes "warning" text if the number is greater than or equal to 80<br>
+            example of piping: MEM_TOTAL=$(free -m | awk '/^Mem:/ {print $2}')<br>
+            - "free -m" prints the memory usage in megabytes. But instead of just printing it, the pipe | sends the text to awk.<br>
+            - awk processes the text grabs only the line starting with Mem: (/^Mem:/) and prints its second field ({print $2})<br>
+
         </p>
     </section>
 
@@ -173,7 +180,11 @@
         <p>
             TODO: State whether you used cron or a systemd timer.
             Explain the schedule and how you ensured that it
-            continues after a reboot.
+            continues after a reboot.<br>
+            ANS: I used cron. Added " * * * * * /home/ubuntu/viikko3/report.sh " to my crontab (crontab -e)<br>
+            (* * * * * means every minute of every hour, day, month and weekday)<br>
+            Then i did " systemctl enable cron " to enable cron at boot.<br>
+            Tested with " systemctl is-enabled cron " and by rebooting.<br>
         </p>
     </section>
 
@@ -184,14 +195,16 @@
         <p>
             TODO: Describe the results of running
             <code>bash -n report.sh</code>
-            and executing the script manually.
+            and executing the script manually.<br>
+            ANS: <code>bash -n report.sh</code> printed nothing, meaning the syntax is fine. The script ran manually.<br>
         </p>
 
         <h3>Disk space status tests</h3>
         <p>
             TODO: Test the status logic using temporary input values.
             Record your actual results below and restore real disk
-            usage afterwards.
+            usage afterwards.<br>
+            ANS: Worked as expected. Tested by placing different values into DISK_USAGE, ex. DISK_USAGE=80<br>
         </p>
 
         <div class="table-container">
@@ -207,17 +220,17 @@
                     <tr>
                         <td>50%</td>
                         <td>OK</td>
-                        <td>TODO</td>
+                        <td>OK</td>
                     </tr>
                     <tr>
                         <td>80%</td>
                         <td>WARNING</td>
-                        <td>TODO</td>
+                        <td>WARNING</td>
                     </tr>
                     <tr>
                         <td>90%</td>
                         <td>WARNING</td>
-                        <td>TODO</td>
+                        <td>WARNING</td>
                     </tr>
                 </tbody>
             </table>
@@ -226,7 +239,11 @@
         <h3>Automatic updates</h3>
         <p>
             TODO: Record the generation times of at least two
-            consecutive automatic updates.
+            consecutive automatic updates.<br>
+            ANS:<br>
+            2026-11-12 13:42:01 EET<br>
+            2026-11-12 13:43:01 EET<br>
+            2026-11-12 13:44:01 EET<br>
         </p>
 
         <h3>Reboot test</h3>
