@@ -159,18 +159,19 @@
         <p>
             The script generates a temporary HTML file and then moves
             the completed file into place as index.html.
-            Nginx serves this file at /viikko3/.
+            Nginx serves this file at /week3/.
         </p>
         <p>
             TODO: Explain the disk space function and one example
             of piping from your own script.<br>
+            <br>
             ANS:<br>
-            1.disk_status() reads the value from DISK_USAGE (df -P / | awk 'NR == 2 {print $5}')<br>
+            1.disk_status() reads the value from<code>DISK_USAGE (df -P / | awk 'NR == 2 {print $5}')</code><br>
             2.turns the % into a number,<br>
             3.an if statement that echoes "warning" text if the number is greater than or equal to 80<br>
-            example of piping: MEM_TOTAL=$(free -m | awk '/^Mem:/ {print $2}')<br>
-            - "free -m" prints the memory usage in megabytes. But instead of just printing it, the pipe | sends the text to awk.<br>
-            - awk processes the text grabs only the line starting with Mem: (/^Mem:/) and prints its second field ({print $2})<br>
+            example of piping:<code> MEM_TOTAL=$(free -m | awk '/^Mem:/ {print $2}')</code><br>
+            - <code>"free -m"</code> prints the memory usage in megabytes. But instead of just printing it, the pipe | sends the text to awk.<br>
+            - awk processes the text grabs only the line starting with Mem: <code>/^Mem:/</code> and prints its second field <code>{print $2}</code><br>
 
         </p>
     </section>
@@ -181,10 +182,11 @@
             TODO: State whether you used cron or a systemd timer.
             Explain the schedule and how you ensured that it
             continues after a reboot.<br>
+            <br>
             ANS: I used cron. Added " * * * * * /home/ubuntu/viikko3/report.sh " to my crontab (crontab -e)<br>
             (* * * * * means every minute of every hour, day, month and weekday)<br>
-            Then i did " systemctl enable cron " to enable cron at boot.<br>
-            Tested with " systemctl is-enabled cron " and by rebooting.<br>
+            Then i did <code> systemctl enable cron </code> to enable cron at boot.<br>
+            Tested with <code> systemctl is-enabled cron </code> and by rebooting.<br>
         </p>
     </section>
 
@@ -196,6 +198,7 @@
             TODO: Describe the results of running
             <code>bash -n report.sh</code>
             and executing the script manually.<br>
+            <br>
             ANS: <code>bash -n report.sh</code> printed nothing, meaning the syntax is fine. The script ran manually.<br>
         </p>
 
@@ -204,7 +207,9 @@
             TODO: Test the status logic using temporary input values.
             Record your actual results below and restore real disk
             usage afterwards.<br>
-            ANS: Worked as expected. Tested by placing different values into DISK_USAGE, ex. DISK_USAGE=80<br>
+            <br>
+            ANS: Worked as expected. Tested by placing different values into <code>DISK_USAGE</code>, ex. <code>DISK_USAGE=80</code>
+            (and then restored the real disk usage)<br>
         </p>
 
         <div class="table-container">
@@ -240,6 +245,7 @@
         <p>
             TODO: Record the generation times of at least two
             consecutive automatic updates.<br>
+            <br>
             ANS:<br>
             2026-11-12 13:42:01 EET<br>
             2026-11-12 13:43:01 EET<br>
@@ -250,13 +256,33 @@
         <p>
             TODO: Record when you rebooted the VM and whether the
             Week 2 application and Week 3 page opened afterwards.
-            Include evidence that the report continued to update.
+            Include evidence that the report continued to update.<br>
+            <br>
+            ANS:Both week 2 and week 3 pages opened afterwards. <br>
+            The reboot and evidence of reports generating after it:
         </p>
+            <pre><code> date '+%Y-%m-%d %H:%M:%S %Z'; sudo reboot</code><br>
+            2026-11-12 19:29:51 EET<br>
+            After reboot:<br>
+            <code>uptime -p</code><br>
+            up 1 minute<br>
+            <code> grep -A1 "Report generated" /var/www/html/week3/index.html</code><br>
+            <th scope="row">Report generated</th><br>
+            <td>2026-11-12 19:31:01 EET</td><br>
+            <code>grep -A1 "Report generated" /var/www/html/week3/index.html</code><br>
+            <th scope="row">Report generated</th><br>
+            <td>2026-11-12 19:32:01 EET</td><br>
+
+        </pre>
     </section>
 
     <section>
         <h2>A problem solved or a lesson learned</h2>
-        <p>TODO: Describe one example from your own work.</p>
+        <p>TODO: Describe one example from your own work.<br>
+            <br>
+        ANS: Had some difficulty with cron, the script did not run automatically.<br>
+            problem was that i did not start the .sh file with <code>#!/bin/bash</code>
+        </p>
     </section>
 
     <footer>

@@ -5,7 +5,7 @@ set -euo pipefail
 disk_status() {
   local usage="${1%\%}"
   if [ $usage -ge 80 ]; then
-    echo "Warning"
+    echo "WARNING"
   else
     echo "OK"
   fi
