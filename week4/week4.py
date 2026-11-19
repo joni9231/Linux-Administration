@@ -26,7 +26,6 @@ SITE = """
 <font face="Comic Sans MS">
 Welcome to my Week 4 project!!!!<br>
 READ ONLY visitor count: <b><font color="red">{{ maara }}</font></b> !!!! ٩(^ᗜ^ )و ´-
-<a href="http://195.148.21.248/week2/"><font size="6">from the week 2 site</font></a>
 </font>
 
 <br><br>
@@ -34,6 +33,8 @@ READ ONLY visitor count: <b><font color="red">{{ maara }}</font></b> !!!! ٩(^�
 <hr>
 
 <pre style="font-size: 16px;">
+<a href="http://195.148.21.248/week2/"><font size="8">Week 2</font></a><br>
+<a href="http://128.214.252.207/week4/"><font size="8">Week 4 (this page)</font></a><br>
 ----------------------------------------------------
 
  /\\_/\\
