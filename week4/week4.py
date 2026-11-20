@@ -43,8 +43,7 @@ READ ONLY visitor count: <b><font color="red">{{ maara }}</font></b> !!!! Ù©(^á—
 <h2><font color="purple">Server B and copying</font></h2>
 <p>
 Server B was created in cPouta from a snapshot of server A.<br>
-I set a floating IP and opened the needed ports for SSH and SQL
-communication between the two servers.
+I set a floating IP and opened the necessary ports for SSH (22) and sql traffic (3306) (from the server A)
 </p>
 
 <h2><font color="purple">Storage, users and permissions</font></h2>
@@ -53,6 +52,8 @@ communication between the two servers.
 </p>
 
 <h2><font color="purple">Hourly file backups</font></h2>
+<p>The cron line</p>
+0 * * * * /usr/local/bin/www-backup.sh
 <p>Backup log:</p>
 <pre>
 <b>sudo cat /var/log/www-backup.log</b>
@@ -76,7 +77,9 @@ communication between the two servers.
 
 <h2><font color="purple">Database replication</font></h2>
 <pre>
-<b>sudo mysql -e "SHOW REPLICA STATUS\\G" | egrep "Replica_IO_Running|Replica_SQL_Running|Seconds_Behind_Source|Last_.*Error|Source_Host"</b>
+<b>date; uptime; sudo mysql -e "SHOW REPLICA STATUS\G" | egrep "Replica_IO_Running|Replica_SQL_Running|Seconds_Behind_Source|Last_.*Error|Source_Host"</b>
+        Fri Nov 20 16:41:51 EET 2026
+        16:41:51 up  3:53,  1 user,  load average: 0.06, 0.10, 0.09
         Source_Host: 192.168.1.225
         Replica_IO_Running: Yes
         Replica_SQL_Running: Yes
@@ -89,7 +92,7 @@ communication between the two servers.
         Last_SQL_Error_Timestamp:
 </pre>
 <p>
-There are no errors and the replica is 0 seconds behind, so replication is healthy.
+There are no errors and the replica is 0 seconds behind, so replication is healthy. 
 </p>
 
 <h2><font color="purple">Read only</font></h2>
@@ -118,7 +121,7 @@ Connection to 128.214.252.207 closed by remote host
 </pre>
 <p>
 The server was rebooted at 12:48. The backup log above shows that the 13:00
-and 14:00 backups still ran.
+and 14:00 backups still ran. The replication status has date and uptime to show that it also ran upon reboot.
 </p>
 
 <h2><font color="purple">Restoration test</font></h2>
@@ -135,10 +138,10 @@ Took a file out of the latest backup, and compared its sha256sum with the file
 on server A. The checksums match, so the restored file is identical.
 </p>
 
-<h2><font color="purple">problem solved</font></h2>
+<h2><font color="purple">one thing learned</font></h2>
 <pre>
-<b>-- --</b>
-
+<b>Its good to document things. Went backwards to a previous snapshot and i had no clue what i had done after that point. </b>
+</pre>
 </div>
 
 <center>
