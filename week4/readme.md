@@ -1,11 +1,11 @@
-# Linux administration week 4. (Backups and replicaition)
+# Linux administration week 4. (Backups and replication)
 
-## summary
+## Summary
 Server B stores hourly backups of server A, And a real time replication of the visitor counter on server A.
 
-## Severs
-Server A: http://195.148.21.248/week2/
-Server B: http://128.214.252.207/week4/
+## Servers
+- Server A: http://195.148.21.248/week2/
+- Server B: http://128.214.252.207/week4/
 
 ## Contents
 - 'week4.py' The read-only app that runs on server B
