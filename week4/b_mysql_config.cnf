@@ -1,0 +1,6 @@
+[mysqld]
+server_id = 2              # PITÄÄ erota A:sta - kloonissa tarkista!
+relay_log = replica-relay-bin
+read_only = ON             # sovellus ei voi vahingossa kirjoittaa replikaan
+event_scheduler = OFF
+bind_address = 127.0.0.1

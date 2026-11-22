@@ -48,7 +48,9 @@ I set a floating IP and opened the necessary ports for SSH (22) and sql traffic 
 
 <h2><font color="purple">Storage, users and permissions</font></h2>
 <p>
--------
+On server A the files are stored in /var/www/html and backed up to /var/backups/vmA on server B, outside of the public web directory.
+The files are owned by root with permissions 600, meaning only root can read or modify them.
+The database replication is done through a dedicated replicator user that has minimal privileges and cannot modify the database.
 </p>
 
 <h2><font color="purple">Hourly file backups</font></h2>
@@ -93,6 +95,8 @@ I set a floating IP and opened the necessary ports for SSH (22) and sql traffic 
 </pre>
 <p>
 There are no errors and the replica is 0 seconds behind, so replication is healthy. 
+
+Replication does not replace historical backups because the changes carry over to the other server at a fast pace, meaning there is no earlier, healthy point to roll back to if a mistake happens.
 </p>
 
 <h2><font color="purple">Read only</font></h2>
